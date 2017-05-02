@@ -10,11 +10,13 @@ import UIKit
 import GoogleMobileAds
 
 var imagenqlq = UIImage()
-var msjOrImage = Bool()
+//var msjOrImage = Bool()
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, GADBannerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, GADBannerViewDelegate
 
 {
+    
+    @IBOutlet var constrainTop: NSLayoutConstraint!
     
     
     // MARK: Clase del mensaje
@@ -86,11 +88,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.tableView.keyboardDismissMode = .interactive
             
-        //handleSend()
+      
         
         
-        let aka = (self.navigationController?.navigationBar.frame.size.height)! + 19.2
-        holamama = tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: aka)
+       // let aka = (self.navigationController?.navigationBar.frame.size.height)! + 19.2
+        //holamama = tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: aka)
         
         
         
@@ -214,7 +216,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func botonResetAction(_ sender: AnyObject) {
         
-        hacerNuevoFake()
+      hacerNuevoFake()
+      self.inputTextField.text = ""
     }
     
 
@@ -223,7 +226,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     private func createAndLoadInterstitial() -> GADInterstitial? {
         
-        interstitial = GADInterstitial(adUnitID: "ca-app-pub-1545419340469541/4639930711")
+        interstitial = GADInterstitial(adUnitID: "ca-app-pub-1545419340469541/4639930711" )
         
         
         guard let interstitial = interstitial else {
@@ -233,7 +236,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let request = GADRequest()
         
         // Remove the following line before you upload the app
-        request.testDevices = [ kGADSimulatorID ]
+        //request.testDevices = [ kGADSimulatorID ]
         
         interstitial.load(request)
         
@@ -274,12 +277,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-    var holamama = NSLayoutConstraint()
+   // var holamama = NSLayoutConstraint()
     
     //boton ready
     @IBAction func botonReady(_ sender: AnyObject)
     {
-        NSLayoutConstraint.activate([holamama])
+      
+      if self.tableView.isEditing {
+         //nothing happen...
+      }
+      
+      else {
+      
+        //NSLayoutConstraint.activate([holamama])
+         
+         let aka = (self.navigationController?.navigationBar.frame.size.height)! + 1.0
+         constrainTop.constant = aka
         
         if turnoDelBoton == 0 {
             
@@ -299,7 +312,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     
                         
                         fotoFinal.isHidden = false
-                        
+                  
+                  if self.view.frame.size.width > 325.0 {
+                     
+                     fotoFinal.image = UIImage(named: "ParteAbajo")
+                  
+                  } else {
+                     
+                     fotoFinal.image = UIImage(named: "qlq2")
+                  }
+                     
                         self.inputContainerView.isHidden = true
                         
                         readyboton.title = "Details"
@@ -325,6 +347,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             //QLQ
         }
+      }
     }
     
     func irParaAtras() {
@@ -346,7 +369,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         imagenn.isHidden = true
         self.navigationController?.isNavigationBarHidden = false
         viewDeScreen()
-        NSLayoutConstraint.deactivate([holamama])
+        //NSLayoutConstraint.deactivate([holamama])
+        constrainTop.constant = 0
     }
     
     
@@ -512,17 +536,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }()
 
 
-    lazy var seleccionarImagen: UIImageView = {
-        let imagen = UIImageView()
-        imagen.isUserInteractionEnabled = true
-        imagen.image = UIImage(named: "qlq")
-        imagen.translatesAutoresizingMaskIntoConstraints = false
-        imagen.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSend)))
-        return imagen
-
-    }()
-
-
     lazy var swiche: UISwitch = {
         let swiche = UISwitch()
         swiche.translatesAutoresizingMaskIntoConstraints = false
@@ -548,19 +561,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         containerView.backgroundColor = UIColor.white
         //Other things...
 
-        //............
-
-
-        containerView.addSubview(self.seleccionarImagen)
-
-        //x,y,w,h
-        self.seleccionarImagen.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
-        self.seleccionarImagen.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        self.seleccionarImagen.widthAnchor.constraint(equalToConstant: 52).isActive = true
-        self.seleccionarImagen.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
-        
-
-
+      
+      
+        //AQUI VA EL BOTON
+      
         containerView.addSubview(self.inputTextField)
 
         //............
@@ -570,7 +574,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //x,y,w,h
         self.inputTextField.leftAnchor.constraint(equalTo: self.swiche.rightAnchor).isActive = true
         self.inputTextField.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        self.inputTextField.rightAnchor.constraint(equalTo: self.seleccionarImagen.leftAnchor).isActive = true
+        self.inputTextField.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
         self.inputTextField.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
         self.inputTextField.backgroundColor = UIColor.clear
 
@@ -615,46 +619,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     // MARK: mandarImagen
     //Mandar imagen
-   func handleSend() {
-      
-      let myPickerController = UIImagePickerController()
-      myPickerController.allowsEditing = true
-      myPickerController.delegate = self
-      self.present(myPickerController, animated: true, completion: nil)
-      inputTextField.text = ""
-      
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-      var selectedImageFromPicker: UIImage?
-      
-      if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
-            
-         selectedImageFromPicker = editedImage
-        
-      }  else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-            
-         selectedImageFromPicker = originalImage
-         
-      }
-        
-      if selectedImageFromPicker != nil {
-         
-         msjOrImage = true
-         imagenqlq = selectedImageFromPicker!
-         
-      }
-      self.dismiss(animated: true, completion: nil)
-      inputTextField.text = ""
-      //msjOrImage = false
-      
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        
-        self.dismiss(animated: true, completion: nil)
-    }
+   
 
     
 }
