@@ -9,8 +9,7 @@
 import UIKit
 import GoogleMobileAds
 
-var imagenqlq = UIImage()
-//var msjOrImage = Bool()
+
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, GADBannerViewDelegate
 
@@ -52,60 +51,61 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let defaults = UserDefaults.standard
+      let defaults = UserDefaults.standard
         
-        NotificationCenter.default.addObserver(
+      NotificationCenter.default.addObserver(
             self,
             selector: #selector(ViewController.keyboardWillShow(event:)),
             name: NSNotification.Name.UIKeyboardWillShow,
             object: nil
-        )
+      )
             
             
-        inputTextField.delegate = self
+      inputTextField.delegate = self
             
-        interstitial = createAndLoadInterstitial()
+      interstitial = createAndLoadInterstitial()
             
-        fotoFinal.isHidden = true
+      fotoFinal.isHidden = true
             
-        swiche.isEnabled = false
+      swiche.isEnabled = false
             
-        swiche.isOn = true
+      swiche.isOn = true
             
             
-        tableView.delegate = self
-        tableView.dataSource = self
-            
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        tableView.bottomAnchor.accessibilityActivate()
-        
-        inputTextField.placeholder = "Name to show on top"
-        
-        
-        
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 48.0
-        
-        self.tableView.keyboardDismissMode = .interactive
-            
+      tableView.delegate = self
+      tableView.dataSource = self
       
+      tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+      tableView.bottomAnchor.accessibilityActivate()
+        
+      inputTextField.placeholder = "Name to show on top"
         
         
-       // let aka = (self.navigationController?.navigationBar.frame.size.height)! + 19.2
-        //holamama = tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: aka)
         
+      self.tableView.rowHeight = UITableViewAutomaticDimension
+      self.tableView.estimatedRowHeight = 48.0
         
-        
-        if defaults.bool(forKey: "FirstLaunch") {
-            //qlq
-        } else {
-        
-            setupFondoImage(Imagen: UIImage(named:"Tutorial#1")!, gestor: UITapGestureRecognizer(target:self, action:#selector(ViewController.imageTapped)),alpha: 1.0)
+      self.tableView.keyboardDismissMode = .interactive
             
-            defaults.set(true, forKey: "FirstLaunch")
-            defaults.synchronize()
-        }
-    }
+   
+      let color = UIColor.init(colorLiteralRed: 0.021, green: 0.500, blue: 0.999, alpha: 1.0)
+      
+      
+      self.swiche.onTintColor = color
+      self.swiche.tintColor = .gray
+
+      
+      
+      if defaults.bool(forKey: "FirstLaunch") {
+            //qlq
+      } else {
+        
+         setupFondoImage(Imagen: UIImage(named:"Tutorial#1")!, gestor: UITapGestureRecognizer(target: self, action:#selector(ViewController.imageTapped)),alpha: 1.0)
+         
+         defaults.set(true, forKey: "FirstLaunch")
+         defaults.synchronize()
+      }
+   }
     
     
 
@@ -125,9 +125,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     
     func scrollToBottom() {
-        if messages.count > 0 {
-            tableView.scrollToRow(at: IndexPath(row: messages.count - 1 , section: 0), at: .bottom, animated: false)
-        }
+       if messages.count > 0 {
+          tableView.scrollToRow(at: IndexPath(row: messages.count - 1 , section: 0), at: .bottom, animated: false)
+      }
     }
 
 
@@ -175,8 +175,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         return cell
 
-    }
-    
+   }
+   
+   
+   
     // MARK: sections y rows
     func numberOfSections(in tableView: UITableView) -> Int {
 
@@ -277,7 +279,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-   // var holamama = NSLayoutConstraint()
+   
     
     //boton ready
     @IBAction func botonReady(_ sender: AnyObject)
@@ -289,7 +291,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       
       else {
       
-        //NSLayoutConstraint.activate([holamama])
+        
          
          let aka = (self.navigationController?.navigationBar.frame.size.height)! + 1.0
          constrainTop.constant = aka
@@ -297,13 +299,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if turnoDelBoton == 0 {
             
             inputTextField.resignFirstResponder()
-            
-            //if turno == 1 || turno == 2 {
-                
+         
+         
                 if inputTextField.text == "" {
-                    
-                   // if navigationItem.title != "" {
-                        
+                  
+                  
                         if (self.interstitial.isReady)
                         {
                             self.interstitial.present(fromRootViewController: self)
@@ -333,13 +333,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         button.addTarget(self, action: #selector(irParaAtras), for: .touchUpInside)
                         let barButton = UIBarButtonItem.init(customView: button)
                         self.navigationItem.leftBarButtonItem = barButton
-                    
-                   // }
                 }
                 
                 setupFondoImage(Imagen: UIImage(named:"Tutorial2")!, gestor: UITapGestureRecognizer(target:self, action:#selector(ViewController.imagentutorial2)), alpha: 0.77)
-                
-           //}
+         
             
             turnoDelBoton = 1
             
@@ -489,7 +486,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 
 
-        if inputTextField.text != "" {
+      if inputTextField.text != "" {
 
             if turno == 0 {
 
@@ -497,20 +494,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
             }
          
-         if turno == 1 {
-               
-            //aqui va lo de la imagenqlq
-            messages.append(Message(content: inputTextField.text!, isOutgoing: swiche.isOn))
-            swiche.isEnabled = true
+            if turno == 1 {
             
+               messages.append(Message(content: inputTextField.text!, isOutgoing: swiche.isOn))
+               swiche.isEnabled = true
 
-         }
+            }
 
-         swiche.isEnabled = true
-         turno = 1
+            swiche.isEnabled = true
+            turno = 1
          
-         tableView.reloadData()
-         inputTextField.text = ""
+            tableView.reloadData()
+            inputTextField.text = ""
       }
 
       scrollToBottom()
@@ -524,7 +519,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // MARK: containerview
 
-    // MARK: textfield and button
     lazy var inputTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Enter message..."
@@ -552,22 +546,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return separatorLineView
     }()
 
-    // MARK: container
-
+   
     lazy var inputContainerView: UIView = {
 
         let containerView = UIView()
         containerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)
         containerView.backgroundColor = UIColor.white
-        //Other things...
+      
 
-      
-      
-        //AQUI VA EL BOTON
       
         containerView.addSubview(self.inputTextField)
-
-        //............
 
         containerView.addSubview(self.swiche)
 
@@ -581,14 +569,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 
         //x,y,w,h
-        self.swiche.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
+      
+        self.swiche.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 5.0).isActive = true
         self.swiche.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
         self.swiche.heightAnchor.constraint(equalToConstant: 30).isActive = true
         self.swiche.rightAnchor.constraint(equalTo: self.inputTextField.leftAnchor).isActive = true
         self.swiche.widthAnchor.constraint(equalToConstant: 55).isActive = true
 
 
-        
         
         containerView.addSubview(self.separatorLineView)
         //x,y,w,h
