@@ -376,12 +376,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func viewDeScreen() {
         
-       viewww = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        let tapGestureRecognizerDelScreenShot = UITapGestureRecognizer(target:self, action:#selector(ViewController.tomarScreenShot))
-        viewww.backgroundColor = UIColor.clear
-        viewww.isUserInteractionEnabled = true
-        viewww.addGestureRecognizer(tapGestureRecognizerDelScreenShot)
-        self.view.addSubview(viewww)
+      viewww = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+      let tapGestureRecognizerDelScreenShot = UITapGestureRecognizer(target:self, action:#selector(ViewController.tomarScreenShot))
+      viewww.backgroundColor = UIColor.red
+      viewww.isUserInteractionEnabled = true
+      viewww.addGestureRecognizer(tapGestureRecognizerDelScreenShot)
+      self.view.addSubview(viewww)
         
         
     }

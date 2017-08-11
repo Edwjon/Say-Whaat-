@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		479F8B921E96DFB800399AA8 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 479F8B911E96DFB800399AA8 /* GoogleMobileAds.framework */; };
 		47ADD88D1E1C8CCD005A3503 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ADD88C1E1C8CCD005A3503 /* AppDelegate.swift */; };
 		47ADD8941E1C8CCD005A3503 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47ADD8931E1C8CCD005A3503 /* Assets.xcassets */; };
 		47ADD8971E1C8CCD005A3503 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47ADD8951E1C8CCD005A3503 /* LaunchScreen.storyboard */; };
@@ -26,10 +25,10 @@
 		47ADD8E01E1C9146005A3503 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ADD8DE1E1C9146005A3503 /* EventKitUI.framework */; };
 		47ADD8E21E1C914C005A3503 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ADD8E11E1C914C005A3503 /* MessageUI.framework */; };
 		47ADD8E61E1C9156005A3503 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ADD8E51E1C9156005A3503 /* SystemConfiguration.framework */; };
+		47E738C71F3D48C300D9D26A /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47E738C61F3D48C300D9D26A /* GoogleMobileAds.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		479F8B911E96DFB800399AA8 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "GoogleMobileAdsSdkiOS-7.19.0/GoogleMobileAds.framework"; sourceTree = "<group>"; };
 		47ADD8891E1C8CCD005A3503 /* Say Whaat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Say Whaat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47ADD88C1E1C8CCD005A3503 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47ADD8931E1C8CCD005A3503 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -50,6 +49,7 @@
 		47ADD8DE1E1C9146005A3503 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		47ADD8E11E1C914C005A3503 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		47ADD8E51E1C9156005A3503 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		47E738C61F3D48C300D9D26A /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "GoogleMobileAdsSdkiOS-7.22.0/GoogleMobileAds.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +60,7 @@
 				47ADD8E61E1C9156005A3503 /* SystemConfiguration.framework in Frameworks */,
 				47ADD8E21E1C914C005A3503 /* MessageUI.framework in Frameworks */,
 				47ADD8DF1E1C9146005A3503 /* EventKit.framework in Frameworks */,
-				479F8B921E96DFB800399AA8 /* GoogleMobileAds.framework in Frameworks */,
+				47E738C71F3D48C300D9D26A /* GoogleMobileAds.framework in Frameworks */,
 				47ADD8E01E1C9146005A3503 /* EventKitUI.framework in Frameworks */,
 				47ADD8DC1E1C913D005A3503 /* CoreTelephony.framework in Frameworks */,
 				47ADD8DA1E1C9138005A3503 /* CoreMedia.framework in Frameworks */,
@@ -111,7 +111,7 @@
 		47ADD8D01E1C9117005A3503 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				479F8B911E96DFB800399AA8 /* GoogleMobileAds.framework */,
+				47E738C61F3D48C300D9D26A /* GoogleMobileAds.framework */,
 				47ADD8E51E1C9156005A3503 /* SystemConfiguration.framework */,
 				47ADD8E11E1C914C005A3503 /* MessageUI.framework */,
 				47ADD8DD1E1C9146005A3503 /* EventKit.framework */,
@@ -338,6 +338,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.19.0",
+					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.22.0",
 				);
 				INFOPLIST_FILE = "Say Whaat?/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -360,6 +361,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.19.0",
+					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.22.0",
 				);
 				INFOPLIST_FILE = "Say Whaat?/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
