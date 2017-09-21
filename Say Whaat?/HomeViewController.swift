@@ -36,9 +36,9 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         view.addSubview(navBar)
         
        
-        /*let height: CGFloat = 38
-        let bounds = self.navigationController!.navigationBar.bounds
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height + height)*/
+        let height: CGFloat = 38
+        let bounds = self.navigationController?.navigationBar.bounds
+        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: (bounds?.width)!, height: (bounds?.height)! + height)
         
         collectionView?.register(FooterCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "Footer")
         
@@ -134,7 +134,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         let request = GADRequest()
         
         // Remove the following line before you upload the app
-        //request.testDevices = [ kGADSimulatorID ]
+        request.testDevices = [ kGADSimulatorID ]
         
         interstitial.load(request)
         
@@ -147,7 +147,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidShow), name: Notification.Name.UIKeyboardDidShow, object: nil)
     }
     
-    func handleKeyboardDidShow() {
+    @objc func handleKeyboardDidShow() {
         
         if messages.count > 0 {
             let indexpath = IndexPath(item: messages.count - 1, section: 0)
@@ -176,7 +176,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     
-    func imageTapped(){
+    @objc func imageTapped(){
         
         navBar.isHidden = false
         self.inputContainerView.isHidden = false
@@ -188,7 +188,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     //MARK: Handlers
     
-    func handleUploadTap() {
+    @objc func handleUploadTap() {
         
         if turno == 1 {
             
@@ -203,7 +203,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     
-    func handleReset() {
+    @objc func handleReset() {
         
         collectionView?.reloadData()
         createAlert(title: "Please, put 2 characters")
@@ -245,7 +245,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     
     //MARK: IMG2 Y SCREENSHOT
-    func imagentutorial2() {
+    @objc func imagentutorial2() {
         
         imagenn.isHidden = true
         navBar.isHidden = false
@@ -308,7 +308,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     
     //tomar screenshot
-    func tomarScreenShot() {
+    @objc func tomarScreenShot() {
         
         UIImageWriteToSavedPhotosAlbum(screenshot(), nil, nil, nil)
         
@@ -337,7 +337,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     
-    func handleDone() {
+    @objc func handleDone() {
         
         if turno == 1 {
             
@@ -389,7 +389,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     
     
-    func acciondelswiche(){
+    @objc func acciondelswiche(){
         
         
         if swiche.isOn {
@@ -518,7 +518,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     fileprivate func estimateFrameForText(_ text: String) -> CGRect {
         let size = CGSize(width: 200, height: 1000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)], context: nil)
+        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)], context: nil)
     }
     
     
@@ -974,11 +974,3 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
  */
  
 }
-
-
-
-
-
-
-
-

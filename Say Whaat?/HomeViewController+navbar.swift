@@ -62,7 +62,7 @@ extension HomeViewController {
     }
     
     
-    func irParaAtras() {
+    @objc func irParaAtras() {
         
         //navigationItem.leftBarButtonItem = botonIzquierda
         //navigationItem.rightBarButtonItem = botonDerecha
@@ -286,7 +286,7 @@ extension HomeViewController {
         return cell
     }
     
-    func userDidSwipeUp(_ gesture : UISwipeGestureRecognizer) {
+    @objc func userDidSwipeUp(_ gesture : UISwipeGestureRecognizer) {
         
         let point = gesture.location(in: collectionView)
         let duration = 0.5
