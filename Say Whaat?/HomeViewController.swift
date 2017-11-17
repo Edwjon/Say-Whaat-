@@ -15,6 +15,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     var navBar: UINavigationBar = UINavigationBar()
     
+    
     var holaqlq = 0
     var turno = 0
     var fotoFinal = UIImageView()
@@ -26,19 +27,23 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        navBar.shadowImage = #imageLiteral(resourceName: "TransparentPixel")
+        
+        let extendedBar = ExtendedNavBarView()
+        extendedBar.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 105)
+        extendedBar.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1.0)
+        view.addSubview(extendedBar)
+        
+        self.navBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 105)
+        view.addSubview(navBar)
+        
+        
         interstitial = createAndLoadInterstitial()
         
         setupView()
         
         setupImagenAbajo()
-        
-        self.navBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 82)
-        view.addSubview(navBar)
-        
-       
-        let height: CGFloat = 38
-        let bounds = self.navigationController?.navigationBar.bounds
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: (bounds?.width)!, height: (bounds?.height)! + height)
         
         collectionView?.register(FooterCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "Footer")
         
@@ -58,6 +63,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         botonDerecha.setTitleColor(UIColor(red: 54/255, green: 149/255, blue: 251/255, alpha: 1.0) , for: .normal)
         botonDerecha.titleLabel?.font = UIFont.systemFont(ofSize: 16.5)
         navBar.addSubview(botonDerecha)
+        
         //botonDerecha = UIBarButtonItem(title: "Get it done!", style: .plain, target: self, action: #selector(handleDone))
         //navigationItem.rightBarButtonItem = botonDerecha
         
@@ -117,7 +123,10 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         self.swiche.onTintColor = colorAzul
         self.swiche.tintColor = .gray
         
+        print(navBar.frame.height)
+        
     }
+    
     
     //ads
     var interstitial:GADInterstitial!
@@ -149,9 +158,11 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     @objc func handleKeyboardDidShow() {
         
-        if messages.count > 0 {
-            let indexpath = IndexPath(item: messages.count - 1, section: 0)
-            self.collectionView?.scrollToItem(at: indexpath, at: .bottom, animated: true)
+        DispatchQueue.main.async {
+                if self.messages.count > 0 {
+                    let indexpath = IndexPath(item: self.messages.count - 1, section: 0)
+                    self.collectionView?.scrollToItem(at: indexpath, at: .bottom, animated: true)
+                }
         }
     }
     
@@ -192,6 +203,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         
         if turno == 1 {
             
+            inputContainerView.isHidden = true
+            
             let imagePickerController = UIImagePickerController()
         
             imagePickerController.allowsEditing = true
@@ -205,6 +218,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     @objc func handleReset() {
         
+        print(self.view.frame.size)
         collectionView?.reloadData()
         createAlert(title: "Please, put 2 characters")
         hacerNuevoFake()
@@ -333,6 +347,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         
         self.present(alertController, animated: true, completion: nil)
         
+        fotoFinal.isHidden = true
         
     }
     
@@ -347,10 +362,14 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             }
             
             if messages.last?.id == 2 {
+                
                 reusableView.etiqueta.isHidden = true
             
             } else {
-                reusableView.etiqueta.isHidden = false
+                
+                if messages.count > 0 {
+                    reusableView.etiqueta.isHidden = false
+                }
             }
             
             self.inputTextField.text = nil
@@ -385,6 +404,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             }
                 
         }
+            
     }
     
     
@@ -551,6 +571,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         
+        inputContainerView.isHidden = false
+        
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -559,12 +581,15 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         //we selected an image
         handleImageSelectedForInfo(info as [String : AnyObject])
         
-        
         dismiss(animated: true, completion: nil)
+        
+        inputContainerView.isHidden = false
+        
+        
     }
     
     
-    private func handleImageSelectedForInfo(_ info: [String: AnyObject]) {
+    @objc func handleImageSelectedForInfo(_ info: [String: AnyObject]) {
         
         var selectedImageFromPicker: UIImage?
         
@@ -594,7 +619,16 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         }
         
         messages.append(message!)
-        collectionView?.reloadData()
+        //self.collectionView?.reloadData()
+        
+        DispatchQueue.main.async {
+            
+            self.collectionView?.reloadData()
+            if self.messages.count > 0 {
+                let indexpath = IndexPath(item: self.messages.count - 1, section: 0)
+                self.collectionView?.scrollToItem(at: indexpath, at: .bottom, animated: true)
+            }
+        }
         
     }
     
@@ -642,7 +676,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     lazy var inputContainerView: UIView = {
         
         let containerView = UIView()
-        containerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)
+        containerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 70)
         containerView.backgroundColor = UIColor.white
         
         
@@ -654,22 +688,34 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         
         //x,y,w,h
         self.inputTextField.leftAnchor.constraint(equalTo: self.swiche.rightAnchor, constant: 4).isActive = true
-        self.inputTextField.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        
+        //self.inputTextField.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        self.inputTextField.centerYAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        
         self.inputTextField.rightAnchor.constraint(equalTo: self.uploadImageView.leftAnchor, constant: 4).isActive = true
-        self.inputTextField.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
+        
+        
+        let qlq = containerView.frame.height - 15
+        self.inputTextField.heightAnchor.constraint(equalToConstant: qlq).isActive = true
+        //self.inputTextField.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
         self.inputTextField.backgroundColor = UIColor.clear
         
         
         //x,y,w,h
         self.swiche.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 4).isActive = true
-        self.swiche.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        
+        //self.swiche.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        self.swiche.centerYAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        
         self.swiche.heightAnchor.constraint(equalToConstant: 30).isActive = true
         self.swiche.widthAnchor.constraint(equalToConstant: 55).isActive = true
         
         
         
         //x,y,w,h
-        self.uploadImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        //self.uploadImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        self.uploadImageView.centerYAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        
         self.uploadImageView.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
         self.uploadImageView.widthAnchor.constraint(equalToConstant: 47).isActive = true
         self.uploadImageView.heightAnchor.constraint(equalToConstant: 47).isActive = true
@@ -677,7 +723,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         
         //x,y,w,h
         self.separatorLineView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
-        self.separatorLineView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+        self.separatorLineView.topAnchor.constraint(equalTo: inputTextField.topAnchor).isActive = true
         self.separatorLineView.widthAnchor.constraint(equalTo: containerView.widthAnchor).isActive = true
         self.separatorLineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
@@ -756,19 +802,18 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             swiche.isEnabled = true
             turno = 1
             
-            collectionView?.reloadData()
-            inputTextField.text = ""
-            
-            if messages.count > 0 {
-                let indexpath = IndexPath(item: self.messages.count - 1, section: 0)
-                self.collectionView?.scrollToItem(at: indexpath, at: .bottom, animated: true)
+            DispatchQueue.main.async {
+                
+                self.collectionView?.reloadData()
+                self.inputTextField.text = ""
+                
+                if self.messages.count > 0 {
+                    let indexpath = IndexPath(item: self.messages.count - 1, section: 0)
+                    self.collectionView?.scrollToItem(at: indexpath, at: .bottom, animated: true)
+                }
             }
             
-            
-            
         }
-        
-        //handleKeyboardDidShow()
         
         return true
     }
@@ -786,6 +831,10 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        /*let height: CGFloat = 38
+        let bounds = self.navigationController?.navigationBar.bounds
+        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: (bounds?.width)!, height: (bounds?.height)! + height)*/
+        
         if holaqlq == 0 {
             
             if dosletras.text == nil {
@@ -797,6 +846,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     
     //MARK: Icono NavBar
+    
     
     var label = UILabel()
     var dosletras = UILabel()
@@ -896,6 +946,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     
     
+    
     //.....
     /*
  func handlePan(gestureRecognizer: UIPanGestureRecognizer) {
@@ -974,3 +1025,4 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
  */
  
 }
+

@@ -24,7 +24,7 @@ extension HomeViewController {
             
             fotoFinal.image = UIImage(named: "pequeno")
             fotoFinal.contentMode = .scaleAspectFit
-            fotoFinal.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 20).isActive = true
+            fotoFinal.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 20).isActive = true
             
             //infoButton.frame = CGRect.init(x: 145, y: 7, width: 40, height: 25)
             //backButton.frame = CGRect.init(x: -120, y: 7, width: 25, height: 25)
@@ -35,7 +35,7 @@ extension HomeViewController {
             
             fotoFinal.image = UIImage(named: "medio")
             fotoFinal.contentMode = .scaleAspectFit
-            fotoFinal.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 20).isActive = true
+            fotoFinal.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 20).isActive = true
             
             //infoButton.frame = CGRect.init(x: 170, y: 7, width: 40, height: 25)
             //backButton.frame = CGRect.init(x: -145, y: 7, width: 25, height: 25)
@@ -46,7 +46,7 @@ extension HomeViewController {
             
             fotoFinal.image = UIImage(named: "grande")
             fotoFinal.contentMode = .scaleAspectFit
-            fotoFinal.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 40).isActive = true
+            fotoFinal.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 40).isActive = true
             
             //infoButton.frame = CGRect.init(x: 190, y: 7, width: 40, height: 25)
             //backButton.frame = CGRect.init(x: -170, y: 7, width: 25, height: 25)

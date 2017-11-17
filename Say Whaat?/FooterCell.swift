@@ -29,7 +29,7 @@ class FooterCell: UICollectionViewCell {
         
         
         etiqueta.topAnchor.constraint(equalTo: self.topAnchor, constant: -5).isActive = true
-        etiqueta.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
+        etiqueta.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 5).isActive = true
         etiqueta.widthAnchor.constraint(equalToConstant: 70).isActive = true
         etiqueta.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }

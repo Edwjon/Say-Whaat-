@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		47ABB91E1F746DD80049D3D8 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ABB91D1F746DD80049D3D8 /* GoogleMobileAds.framework */; };
+		4781D0191F8007F900622813 /* ExtendedBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4781D0181F8007F900622813 /* ExtendedBar.swift */; };
 		47ADD8941E1C8CCD005A3503 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47ADD8931E1C8CCD005A3503 /* Assets.xcassets */; };
 		47ADD8971E1C8CCD005A3503 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47ADD8951E1C8CCD005A3503 /* LaunchScreen.storyboard */; };
 		47ADD8D21E1C9117005A3503 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ADD8D11E1C9117005A3503 /* AdSupport.framework */; };
@@ -20,6 +20,7 @@
 		47ADD8E01E1C9146005A3503 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ADD8DE1E1C9146005A3503 /* EventKitUI.framework */; };
 		47ADD8E21E1C914C005A3503 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ADD8E11E1C914C005A3503 /* MessageUI.framework */; };
 		47ADD8E61E1C9156005A3503 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ADD8E51E1C9156005A3503 /* SystemConfiguration.framework */; };
+		47B491631FBFA25B00663637 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47B491621FBFA25B00663637 /* GoogleMobileAds.framework */; };
 		47DBC82F1F3D4B8C00E5F2BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DBC8291F3D4B8C00E5F2BC /* AppDelegate.swift */; };
 		47DBC8301F3D4B8C00E5F2BC /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DBC82A1F3D4B8C00E5F2BC /* ChatMessageCell.swift */; };
 		47DBC8311F3D4B8C00E5F2BC /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DBC82B1F3D4B8C00E5F2BC /* FooterCell.swift */; };
@@ -29,7 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		47ABB91D1F746DD80049D3D8 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "GoogleMobileAdsSdkiOS-7.24.0/GoogleMobileAds.framework"; sourceTree = "<group>"; };
+		4781D0181F8007F900622813 /* ExtendedBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedBar.swift; sourceTree = "<group>"; };
 		47ADD8891E1C8CCD005A3503 /* Say Whaat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Say Whaat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47ADD8931E1C8CCD005A3503 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47ADD8961E1C8CCD005A3503 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -44,6 +45,7 @@
 		47ADD8DE1E1C9146005A3503 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		47ADD8E11E1C914C005A3503 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		47ADD8E51E1C9156005A3503 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		47B491621FBFA25B00663637 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		47DBC8291F3D4B8C00E5F2BC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47DBC82A1F3D4B8C00E5F2BC /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		47DBC82B1F3D4B8C00E5F2BC /* FooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterCell.swift; sourceTree = "<group>"; };
@@ -57,10 +59,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47ABB91E1F746DD80049D3D8 /* GoogleMobileAds.framework in Frameworks */,
 				47ADD8E61E1C9156005A3503 /* SystemConfiguration.framework in Frameworks */,
 				47ADD8E21E1C914C005A3503 /* MessageUI.framework in Frameworks */,
 				47ADD8DF1E1C9146005A3503 /* EventKit.framework in Frameworks */,
+				47B491631FBFA25B00663637 /* GoogleMobileAds.framework in Frameworks */,
 				47ADD8E01E1C9146005A3503 /* EventKitUI.framework in Frameworks */,
 				47ADD8DC1E1C913D005A3503 /* CoreTelephony.framework in Frameworks */,
 				47ADD8DA1E1C9138005A3503 /* CoreMedia.framework in Frameworks */,
@@ -98,6 +100,7 @@
 				47DBC82A1F3D4B8C00E5F2BC /* ChatMessageCell.swift */,
 				47DBC82B1F3D4B8C00E5F2BC /* FooterCell.swift */,
 				47DBC82C1F3D4B8C00E5F2BC /* HomeViewController.swift */,
+				4781D0181F8007F900622813 /* ExtendedBar.swift */,
 				47DBC82D1F3D4B8C00E5F2BC /* HomeViewController+navbar.swift */,
 				47DBC82E1F3D4B8C00E5F2BC /* Message.swift */,
 				47ADD8931E1C8CCD005A3503 /* Assets.xcassets */,
@@ -111,7 +114,7 @@
 		47ADD8D01E1C9117005A3503 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				47ABB91D1F746DD80049D3D8 /* GoogleMobileAds.framework */,
+				47B491621FBFA25B00663637 /* GoogleMobileAds.framework */,
 				47ADD8E51E1C9156005A3503 /* SystemConfiguration.framework */,
 				47ADD8E11E1C914C005A3503 /* MessageUI.framework */,
 				47ADD8DD1E1C9146005A3503 /* EventKit.framework */,
@@ -206,6 +209,7 @@
 			files = (
 				47DBC8331F3D4B8C00E5F2BC /* HomeViewController+navbar.swift in Sources */,
 				47DBC82F1F3D4B8C00E5F2BC /* AppDelegate.swift in Sources */,
+				4781D0191F8007F900622813 /* ExtendedBar.swift in Sources */,
 				47DBC8311F3D4B8C00E5F2BC /* FooterCell.swift in Sources */,
 				47DBC8341F3D4B8C00E5F2BC /* Message.swift in Sources */,
 				47DBC8301F3D4B8C00E5F2BC /* ChatMessageCell.swift in Sources */,
@@ -351,12 +355,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.19.0",
-					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.22.0",
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.24.0",
 				);
 				INFOPLIST_FILE = "Say Whaat?/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "EdwardPizzurro.Say-Whaat-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -378,12 +380,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.19.0",
-					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.22.0",
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.24.0",
 				);
 				INFOPLIST_FILE = "Say Whaat?/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "EdwardPizzurro.Say-Whaat-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
