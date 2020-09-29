@@ -26,6 +26,7 @@ extension HomeViewController {
             fotoFinal.contentMode = .scaleAspectFit
             fotoFinal.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 20).isActive = true
             
+            
             //infoButton.frame = CGRect.init(x: 145, y: 7, width: 40, height: 25)
             //backButton.frame = CGRect.init(x: -120, y: 7, width: 25, height: 25)
             
@@ -35,7 +36,9 @@ extension HomeViewController {
             
             fotoFinal.image = UIImage(named: "medio")
             fotoFinal.contentMode = .scaleAspectFit
-            fotoFinal.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 20).isActive = true
+            fotoFinal.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+            fotoFinal.backgroundColor = .clear
+            fotoFinal.heightAnchor.constraint(equalToConstant: 50).isActive = true
             
             //infoButton.frame = CGRect.init(x: 170, y: 7, width: 40, height: 25)
             //backButton.frame = CGRect.init(x: -145, y: 7, width: 25, height: 25)
@@ -52,14 +55,14 @@ extension HomeViewController {
             //backButton.frame = CGRect.init(x: -170, y: 7, width: 25, height: 25)
         }
         
-        
         fotoFinal.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         fotoFinal.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
-        fotoFinal.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(irParaAtras)))
-        fotoFinal.isUserInteractionEnabled = true
+        //fotoFinal.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(irParaAtras)))
+        //fotoFinal.isUserInteractionEnabled = true
         
     }
+    
     
     
     @objc func irParaAtras() {
@@ -78,6 +81,76 @@ extension HomeViewController {
         self.inputContainerView.isHidden = false
         
         viewww.removeFromSuperview()
+    }
+    
+    
+    
+    
+    //CODIGO RED VIEW
+    
+    func setupView(){
+        
+        let swipeUp : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(userDidSwipeUp(_:)))
+        swipeUp.direction = .left
+        collectionView?.addGestureRecognizer(swipeUp)
+    }
+    
+    
+    func getCellAtPoint(_ point: CGPoint) -> ChatMessageCell? {
+        // Function for getting item at point. Note optionals as it could be nil
+        let indexPath = collectionView?.indexPathForItem(at: point)
+        var cell : ChatMessageCell?
+        
+        if indexPath != nil {
+            cell = collectionView?.cellForItem(at: indexPath!) as? ChatMessageCell
+        } else {
+            cell = nil
+        }
+        
+        return cell
+    }
+    
+    @objc func userDidSwipeUp(_ gesture : UISwipeGestureRecognizer) {
+        
+        let point = gesture.location(in: collectionView)
+        let duration = 0.5
+        
+        if (cell == nil) {
+            
+            cell = getCellAtPoint(point)
+            
+            UIView.animate(withDuration: duration, animations: {
+                //self.activeCell.myCellView.transform = CGAffineTransform(translationX: 0, y: -self.activeCell.frame.height)
+                self.cell.celdaNormal.transform = CGAffineTransform(translationX: -self.cell.frame.width , y: 0)
+                
+            })
+            
+        }  else {
+            
+            // Getting the cell at the point
+            let cell = getCellAtPoint(point)
+            
+            // If the cell is the previously swiped cell, or nothing assume its the previously one.
+            if cell == nil || cell == cell {
+                // To target the cell after that animation I test if the point of the swiping exists inside the now twice as tall cell frame
+                let cellFrame = cell?.frame
+                
+                var rect = CGRect()
+                
+                if cell != nil {
+                    rect = CGRect(x: (cellFrame?.origin.x)! - (cellFrame?.width)!, y: (cellFrame?.origin.y)!, width: (cellFrame?.width)!*2, height: (cellFrame?.height)!)
+                }
+                
+                if rect.contains(point) {
+                    // If swipe point is in the cell delete it
+                    
+                    let indexPath = collectionView?.indexPath(for: cell!)
+                    messages.remove(at: indexPath!.row)
+                    collectionView?.deleteItems(at: [indexPath!])
+                    
+                }
+            }
+        }
     }
     
     
@@ -261,73 +334,6 @@ extension HomeViewController {
     }
     
     
-    
-    //CODIGO RED VIEW
-    
-    func setupView(){
-        
-        let swipeUp : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(userDidSwipeUp(_:)))
-        swipeUp.direction = .left
-        collectionView?.addGestureRecognizer(swipeUp)
-    }
-    
-    
-    func getCellAtPoint(_ point: CGPoint) -> ChatMessageCell? {
-        // Function for getting item at point. Note optionals as it could be nil
-        let indexPath = collectionView?.indexPathForItem(at: point)
-        var cell : ChatMessageCell?
-        
-        if indexPath != nil {
-            cell = collectionView?.cellForItem(at: indexPath!) as? ChatMessageCell
-        } else {
-            cell = nil
-        }
-        
-        return cell
-    }
-    
-    @objc func userDidSwipeUp(_ gesture : UISwipeGestureRecognizer) {
-        
-        let point = gesture.location(in: collectionView)
-        let duration = 0.5
-        
-        if (cell == nil) {
-            
-            cell = getCellAtPoint(point)
-            
-            UIView.animate(withDuration: duration, animations: {
-                //self.activeCell.myCellView.transform = CGAffineTransform(translationX: 0, y: -self.activeCell.frame.height)
-                self.cell.celdaNormal.transform = CGAffineTransform(translationX: -self.cell.frame.width , y: 0)
-                
-            })
-            
-        }  else {
-            
-            // Getting the cell at the point
-            let cell = getCellAtPoint(point)
-            
-            // If the cell is the previously swiped cell, or nothing assume its the previously one.
-            if cell == nil || cell == cell {
-                // To target the cell after that animation I test if the point of the swiping exists inside the now twice as tall cell frame
-                let cellFrame = cell?.frame
-                
-                var rect = CGRect()
-                
-                if cell != nil {
-                    rect = CGRect(x: (cellFrame?.origin.x)! - (cellFrame?.width)!, y: (cellFrame?.origin.y)!, width: (cellFrame?.width)!*2, height: (cellFrame?.height)!)
-                }
-                
-                if rect.contains(point) {
-                    // If swipe point is in the cell delete it
-                    
-                    let indexPath = collectionView?.indexPath(for: cell!)
-                    messages.remove(at: indexPath!.row)
-                    collectionView?.deleteItems(at: [indexPath!])
-                    
-                }
-            }
-        }
-    }
     
     
 }

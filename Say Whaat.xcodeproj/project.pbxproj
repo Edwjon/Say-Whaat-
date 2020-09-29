@@ -20,7 +20,7 @@
 		47ADD8E01E1C9146005A3503 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ADD8DE1E1C9146005A3503 /* EventKitUI.framework */; };
 		47ADD8E21E1C914C005A3503 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ADD8E11E1C914C005A3503 /* MessageUI.framework */; };
 		47ADD8E61E1C9156005A3503 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ADD8E51E1C9156005A3503 /* SystemConfiguration.framework */; };
-		47B491631FBFA25B00663637 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47B491621FBFA25B00663637 /* GoogleMobileAds.framework */; };
+		47B491651FBFAD1200663637 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47B491641FBFAD1200663637 /* GoogleMobileAds.framework */; };
 		47DBC82F1F3D4B8C00E5F2BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DBC8291F3D4B8C00E5F2BC /* AppDelegate.swift */; };
 		47DBC8301F3D4B8C00E5F2BC /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DBC82A1F3D4B8C00E5F2BC /* ChatMessageCell.swift */; };
 		47DBC8311F3D4B8C00E5F2BC /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DBC82B1F3D4B8C00E5F2BC /* FooterCell.swift */; };
@@ -45,7 +45,7 @@
 		47ADD8DE1E1C9146005A3503 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		47ADD8E11E1C914C005A3503 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		47ADD8E51E1C9156005A3503 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		47B491621FBFA25B00663637 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		47B491641FBFAD1200663637 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "GoogleMobileAdsSdkiOS-7.26.0/GoogleMobileAds.framework"; sourceTree = "<group>"; };
 		47DBC8291F3D4B8C00E5F2BC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47DBC82A1F3D4B8C00E5F2BC /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		47DBC82B1F3D4B8C00E5F2BC /* FooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterCell.swift; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 				47ADD8E61E1C9156005A3503 /* SystemConfiguration.framework in Frameworks */,
 				47ADD8E21E1C914C005A3503 /* MessageUI.framework in Frameworks */,
 				47ADD8DF1E1C9146005A3503 /* EventKit.framework in Frameworks */,
-				47B491631FBFA25B00663637 /* GoogleMobileAds.framework in Frameworks */,
+				47B491651FBFAD1200663637 /* GoogleMobileAds.framework in Frameworks */,
 				47ADD8E01E1C9146005A3503 /* EventKitUI.framework in Frameworks */,
 				47ADD8DC1E1C913D005A3503 /* CoreTelephony.framework in Frameworks */,
 				47ADD8DA1E1C9138005A3503 /* CoreMedia.framework in Frameworks */,
@@ -114,7 +114,7 @@
 		47ADD8D01E1C9117005A3503 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				47B491621FBFA25B00663637 /* GoogleMobileAds.framework */,
+				47B491641FBFAD1200663637 /* GoogleMobileAds.framework */,
 				47ADD8E51E1C9156005A3503 /* SystemConfiguration.framework */,
 				47ADD8E11E1C914C005A3503 /* MessageUI.framework */,
 				47ADD8DD1E1C9146005A3503 /* EventKit.framework */,
@@ -156,7 +156,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Pencil;
 				TargetAttributes = {
 					47ADD8881E1C8CCD005A3503 = {
@@ -244,6 +244,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -251,6 +252,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -304,6 +306,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -311,6 +314,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -356,6 +360,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.24.0",
+					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.26.0",
 				);
 				INFOPLIST_FILE = "Say Whaat?/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -381,6 +386,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.24.0",
+					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.26.0",
 				);
 				INFOPLIST_FILE = "Say Whaat?/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

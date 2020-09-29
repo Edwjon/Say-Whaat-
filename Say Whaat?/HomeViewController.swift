@@ -11,7 +11,7 @@ import GoogleMobileAds
 
 
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, GADBannerViewDelegate {
-
+    
     
     var navBar: UINavigationBar = UINavigationBar()
     
@@ -31,11 +31,30 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         navBar.shadowImage = #imageLiteral(resourceName: "TransparentPixel")
         
         let extendedBar = ExtendedNavBarView()
-        extendedBar.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 105)
+        
+        if self.view.frame.height > 800 {
+            //IPhone X
+            extendedBar.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 105)
+        
+        } else {
+            //IPhone Normal
+            extendedBar.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 83)
+        }
+        
+        
         extendedBar.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1.0)
         view.addSubview(extendedBar)
         
-        self.navBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 105)
+        if self.view.frame.height > 800 {
+            //IPhone X
+            self.navBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 105)
+        
+        } else {
+            //IPhone Normal
+            self.navBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 83)
+        }
+        
+        
         view.addSubview(navBar)
         
         
@@ -71,7 +90,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         inputContainerView.isHidden = true
         
         
-        collectionView?.contentInset = UIEdgeInsets(top: 87, left: 0, bottom: 14, right: 0)
+        collectionView?.contentInset = UIEdgeInsets(top: 87, left: 0, bottom: 70, right: 0)
         collectionView?.backgroundColor = .white
         collectionView?.alwaysBounceVertical = true
         collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: "cellId")
@@ -356,7 +375,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         
         if turno == 1 {
             
-            if messages.count > 0 {
+            if messages.count != 0 {
                 let indexpath = IndexPath(item: messages.count - 1, section: 0)
                 self.collectionView?.scrollToItem(at: indexpath, at: .bottom, animated: true)
             }
@@ -383,7 +402,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             }
             
             collectionView?.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
-            
             
             fotoFinal.isHidden = false
             self.inputContainerView.isHidden = true
@@ -640,7 +658,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         textField.placeholder = "Enter message..."
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.delegate = self
-        textField.frame.size.width = 150.0
+        //textField.frame.size.width = 150.0
         return textField
     }()
     
@@ -654,7 +672,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }()
     
     lazy var separatorLineView: UIView = {
-        
         let separatorLineView = UIView()
         separatorLineView.translatesAutoresizingMaskIntoConstraints = false
         separatorLineView.backgroundColor = UIColor.lightGray
@@ -695,10 +712,10 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         self.inputTextField.rightAnchor.constraint(equalTo: self.uploadImageView.leftAnchor, constant: 4).isActive = true
         
         
-        let qlq = containerView.frame.height - 15
+        let qlq = containerView.frame.height - 21
         self.inputTextField.heightAnchor.constraint(equalToConstant: qlq).isActive = true
         //self.inputTextField.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
-        self.inputTextField.backgroundColor = UIColor.clear
+        self.inputTextField.backgroundColor = UIColor.white
         
         
         //x,y,w,h
@@ -807,9 +824,9 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
                 self.collectionView?.reloadData()
                 self.inputTextField.text = ""
                 
-                if self.messages.count > 0 {
+                if self.messages.count != 0 {
                     let indexpath = IndexPath(item: self.messages.count - 1, section: 0)
-                    self.collectionView?.scrollToItem(at: indexpath, at: .bottom, animated: true)
+                    self.collectionView?.scrollToItem(at: indexpath, at: .bottom , animated: true)
                 }
             }
             
@@ -817,8 +834,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         
         return true
     }
-    
-    
     
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -868,9 +883,18 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         image_view.backgroundColor = UIColor(red: 138/255, green: 143/255, blue: 154/255, alpha: 1.0)
         image_view.frame = CGRect.init(x: 0, y: 0, width: 38, height: 38)
         //image_view.center = CGPoint.init(x: titleView.center.x, y: titleView.center.y - 22)
-        image_view.center = CGPoint(x: navBar.center.x, y: navBar.center.y)
         image_view.layer.cornerRadius = image_view.bounds.size.width / 2.0
         image_view.layer.masksToBounds = true
+        
+        if self.view.frame.height > 800 {
+            //IPhone X
+            image_view.center = CGPoint(x: navBar.center.x, y: navBar.center.y + 10)
+            
+        } else {
+            //IPhone Normal
+            image_view.center = CGPoint(x: navBar.center.x, y: navBar.center.y)
+        }
+        
         //titleView.addSubview(image_view)
         navBar.addSubview(image_view)
         
@@ -878,9 +902,20 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         label = UILabel.init(frame: CGRect.init(x: 0, y: 27, width: 170, height: 24))
         label.font = UIFont.systemFont(ofSize: 12)
         //label.center = CGPoint.init(x: titleView.center.x, y: titleView.center.y + 7)
-        label.center = CGPoint.init(x: navBar.center.x, y: navBar.center.y + 28)
+        
+        
+        
         label.textAlignment = .center
         //titleView.addSubview(label)
+        
+        if self.view.frame.height > 800 {
+            //IPhone X
+            label.center = CGPoint.init(x: navBar.center.x, y: navBar.center.y + 38)
+        
+        } else {
+            label.center = CGPoint.init(x: navBar.center.x, y: navBar.center.y + 28)
+        }
+        
         navBar.addSubview(label)
         
         
@@ -922,7 +957,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             let firstTextField = alertController.textFields![0] as UITextField
             
             let text = firstTextField.text
-            if (text?.characters.count)! <= 2 && text != " " && text != "  " && text != "" {
+            if (text?.count)! <= 2 && text != " " && text != "  " && text != "" {
                 
                 self.dosletras.text = text
                 self.image_view.isHidden = false
